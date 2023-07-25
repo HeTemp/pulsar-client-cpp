@@ -113,6 +113,11 @@ class PULSAR_PUBLIC MessageId {
     friend class MessageIdBuilder;
     friend class ChunkMessageIdImpl;
 
+    int64_t ledgerId() const;
+    int64_t entryId() const;
+    int32_t batchIndex() const;
+    int32_t partition() const;
+
     void setTopicName(const std::shared_ptr<std::string>& topic);
 
     friend PULSAR_PUBLIC std::ostream& operator<<(std::ostream& s, const MessageId& messageId);
