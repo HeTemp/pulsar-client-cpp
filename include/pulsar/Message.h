@@ -125,6 +125,7 @@ class PULSAR_PUBLIC Message {
      */
     void setMessageId(const MessageId& messageId) const;
 
+    void setMessageId(int32_t partitionIndex, int64_t ledgerId, int64_t entryId);
     /**
      * Get the index of this message, if it doesn't exist, return -1
      * @return
