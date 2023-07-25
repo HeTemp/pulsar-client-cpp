@@ -1381,11 +1381,21 @@ void ClientConnection::checkServerError(ServerError error) {
 void ClientConnection::handleSendReceipt(const proto::CommandSendReceipt& sendReceipt) {
     int producerId = sendReceipt.producer_id();
     uint64_t sequenceId = sendReceipt.sequence_id();
+
+    int64_t ledgerId = -1;
+    int64_t entryId = -1;
+    if (sendReceipt.has_message_id())
+    {
+        ledgerId = sendReceipt.message_id().ledgerid();
+        entryId = sendReceipt.message_id().entryid();
+    }
+    
     const proto::MessageIdData& messageIdData = sendReceipt.message_id();
     auto messageId = toMessageId(messageIdData);
 
-    LOG_DEBUG(cnxString_ << "Got receipt for producer: " << producerId << " -- msg: " << sequenceId
-                         << "-- message id: " << messageId);
+    LOG_DEBUG(cnxString_ << "Got receipt for producer: " << producerId
+                         << " -- seqId: " << sequenceId << " -- msgId: "
+                         << ledgerId <<":"<< entryId);
 
     Lock lock(mutex_);
     auto it = producers_.find(producerId);
