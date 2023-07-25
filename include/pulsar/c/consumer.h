@@ -316,6 +316,8 @@ PULSAR_PUBLIC int pulsar_consumer_is_connected(pulsar_consumer_t *consumer);
 PULSAR_PUBLIC pulsar_result pulsar_consumer_get_last_message_id(pulsar_consumer_t *consumer,
                                                                 pulsar_message_id_t *messageId);
 
+int pulsar_consumer_is_closed(pulsar_consumer_t *consumer);
+
 #ifdef __cplusplus
 }
 #endif
