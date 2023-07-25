@@ -308,4 +308,11 @@ Result Consumer::getLastMessageId(MessageId& messageId) {
     return promise.getFuture().get(messageId);
 }
 
+bool Consumer::isClosed(){
+    if(impl_){
+        return false;
+    }
+    return impl_->isClosed();
+}
+    
 }  // namespace pulsar
