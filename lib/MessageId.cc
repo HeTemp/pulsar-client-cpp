@@ -173,4 +173,11 @@ PULSAR_PUBLIC void MessageId::setTopicName(const std::string& topicName) {
 
 void MessageId::setTopicName(const std::shared_ptr<std::string>& topic) { return impl_->setTopicName(topic); }
 
+void MessageId::updateMessageIdInfo(int32_t partitionIndex, int64_t ledgerId, int64_t entryId)
+{
+    impl_->partition_ = partitionIndex;
+    impl_->ledgerId_ = ledgerId;
+    impl_->entryId_ = entryId;
+}
+
 }  // namespace pulsar
