@@ -202,11 +202,3 @@ pulsar_result pulsar_consumer_get_last_message_id(pulsar_consumer_t *consumer,
                                                   pulsar_message_id_t *messageId) {
     return (pulsar_result)consumer->consumer.getLastMessageId(messageId->messageId);
 }
-
-int pulsar_consumer_is_closed(consumer_t *consumer){
-    if(consumer->consumer.isClosed()){
-        return 1;
-    }
-    
-    return 0;
-}
